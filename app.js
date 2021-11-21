@@ -1,10 +1,16 @@
 const express = require('express')
 const logger = require('morgan')
 const cors = require('cors')
+const volleyball = require('volleyball')
 
 const contactsRouter = require('./routes/api/contacts')
-
 const app = express()
+app.use(volleyball)
+app.use(cors({
+  origin: '*'
+}))
+
+app.use(express.json())
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short'
 
